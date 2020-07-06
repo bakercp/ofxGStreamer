@@ -3,8 +3,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+#ifdef TARGET_OSX
+    ofxGStreamerSetBundleEnvironment();
+#endif
 	player.setPlayer(ofPtr<ofGstVideoPlayer>(new ofGstVideoPlayer));
-	player.loadMovie("fingers.mov");
+	player.loadMovie("/Users/gilbertsinnott/Movies/test.mov");
 	player.play();
 }
 
