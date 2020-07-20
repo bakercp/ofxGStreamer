@@ -16,35 +16,34 @@ The instructions below will only work with the latest version of the [project ge
 
 This addon depends on the gstreamer SDK. We are using version 1.0 currently. To install it:
 
-### For OSX (Tested with XCode 5, 10.6,7,8,9,10)
+### For OSX (Tested with XCode 11, Mojave)
 
-First you need to download gstreamer v1.0. To install it under osx install each of the packages described below from the [gstreamer install packages for osx](http://gstreamer.freedesktop.org/data/pkg/osx/)
-    
-* [gstreamer-1.0-1.7.1-x86_64.pkg](http://gstreamer.freedesktop.org/data/pkg/osx/1.7.1/gstreamer-1.0-1.7.1-x86_64.pkg) installs the necesary libraries for applications to run
+See [fork notes](Notes.md), or:
 
-* [gstreamer-1.0-devel-1.7.1-x86_64.pkg](http://gstreamer.freedesktop.org/data/pkg/osx/1.7.1/gstreamer-1.0-devel-1.7.1-x86_64.pkg) installs the development files needed to compile gst applications
+```
+brew update
+brew install gstreamer
+brew install gst-plugins-base
+brew install gst-libav
+```
 
-* [gstreamer-1.0-1.7.1-x86_64-packages.dmg](http://gstreamer.freedesktop.org/data/pkg/osx/1.7.1/gstreamer-1.0-1.7.1-x86_64-packages.dmg) contains some additional packages that are needed to encode some formats like h264, some of these packages have GPL license or use patented formats. Download the dmg and install the following packages from that collection:
+Be sure that ofxGStreamerSetBundleEnvironment is called when using macOS:
 
-This package is needed to do colorspace conversion:
+```
 
-    * gstreamer-1.0-libav-1.7.1-x86_64.pkg
+void ofApp::setup() {
 
-And these packages will provide h264 encoding and some network utilities to stream h264 and other data formats:
-    
-    * gstreamer-1.0-codecs-restricted-1.7.1-x86_64.pkg
-    
-    * gstreamer-1.0-net-restricted-1.7.1-x86_64.pkg
+	# working with brew installed libs
 
-If you only want to run an osx app, the development package is not needed but for our applications we needed to the additional packages.
+	ofxGStreamerSetBundleEnvironment() 
 
-It has been reported that there is a big latency improvement between version `1.2.1` and `1.7.1`, see [#8](https://github.com/arturoc/ofxGstRTP/issues/8).
+	# if packaging up a Release build
 
-Note: on the systems we have tested it seems it's necesary to remove or rename `/Library/Frameworks/GStreamer.framework/Headers/assert.h` or it'll clash with the assert.h in the system and some projects won't compile. In our testing we renamed the file to keep a copy instead of deleting it. Open a terminal window and paste this in: 
+	string path = ofFilePath::getCurrentWorkingDirectory();
+	ofxGStreamerSetBundleEnvironment( path )
+}
 
-````
-sudo mv /Library/Frameworks/GStreamer.framework/Headers/assert.h /Library/Frameworks/GStreamer.framework/Headers/assertCOPY.h
-```` 
+```
 
 ### For Windows (Tested in visual studio 2012, on Windows 7 & 8)
 
