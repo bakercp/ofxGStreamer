@@ -4,10 +4,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 #ifdef TARGET_OSX
-    ofxGStreamerSetBundleEnvironment();
+    ofxGStreamerSetBundleEnvironment(); // default is "/Library/Frameworks/GStreamer.framework"
 #endif
 	player.setPlayer(ofPtr<ofGstVideoPlayer>(new ofGstVideoPlayer));
-	player.loadMovie("/Users/gilbertsinnott/Movies/test.mov");
+    
+    
+	player.load("/Users/gilbertsinnott/Movies/test.mov");
 	player.play();
 }
 
