@@ -102,17 +102,14 @@ This produces a pipeline like so:
 webrtcbin bundle-policy=max-bundle name=sendrecv  stun-server=stun://stun.l.google.com:19302 videotestsrc is-live=true pattern=ball ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay ! queue ! application/x-rtp,media=video,encoding-name=VP8,payload=96 ! sendrecv. audiotestsrc is-live=true wave=red-noise ! audioconvert ! audioresample ! queue ! opusenc ! rtpopuspay ! queue ! application/x-rtp,media=audio,encoding-name=OPUS,payload=97 ! sendrecv.
 ```
 
-
-ofxGStreamer
-
-ofxGStreamer uses the GStreamer.framework, which is semi-dead having been last updated for Sierra.
+ofxGStreamer uses the GStreamer.framework, which was last updated for Sierra:
 
 ```
 https://gstreamer.freedesktop.org/documentation/installing/on-mac-osx.html
 https://github.com/autr/ofxGStreamer
 ```
 
-Internally it packages up libs equivalent to what brew offers. My fork has commented includes for brew / manually installed gstreamer in addon_config.mk (ie. if using 1.14+).
+Internally it packages up libs equivalent to what brew offers. Inside addon_config.mk there are commented-out includes for brew / manually installed gstreamer in  (ie. 1.14+).
 
 Important is the ofxGStreamerSetBundleEnvironment function. It sets internal linkage ENV variables, and the original addon seems to only call it for for a GStreamer.framework bundled Release project (ie. relative path).
 
@@ -120,7 +117,15 @@ For any compilation on macOS however, this must always be set, by calling ofxGSt
 
 ```
 void ofApp::setup() {
+
+	# working with brew installed libs
+
 	ofxGStreamerSetBundleEnvironment() 
+
+	# if packaging up a Release build
+
+	string path = ofFilePath::getCurrentWorkingDirectory();
+	ofxGStreamerSetBundleEnvironment( path )
 }
 
 ```
