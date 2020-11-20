@@ -65,7 +65,7 @@ common:
 	
 	# when parsing the file system looking for include paths exclude this for all or
 	# a specific platform
-    # ADDON_INCLUDES_EXCLUDE =
+	# ADDON_INCLUDES_EXCLUDE =
 
 linux:
 	
@@ -86,8 +86,8 @@ msys2:
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoPlayer.cpp
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoGrabber.h
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoGrabber.cpp
-	#ADDON_LDFLAGS += -L$(GSTREAMER_1_0_ROOT_MINGW_X86_64)lib -lgstreamer-1.0 -lgstapp-1.0 -lgstvideo-1.0 -lgstbase-1.0 -lgstnet-1.0 -lgstaudio-1.0 -lgio-2.0 -lpangowin32-1.0 -lgdi32 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lpango-1.0 -lcairo -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lffi -lws2_32 -lole32 -lwinmm -lshlwapi  -lintl -lglib-2.0
-    ADDON_PKG_CONFIG_LIBRARIES = gstreamer-1.0 gstreamer-app-1.0 gstreamer-video-1.0
+	#ADDON_LDFLAGS += -L$(GSTREAMER_1_0_ROOT_X86_64)lib -lgstreamer-1.0 -lgstapp-1.0 -lgstvideo-1.0 -lgstbase-1.0 -lgstnet-1.0 -lgstaudio-1.0 -lgio-2.0 -lpangowin32-1.0 -lgdi32 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lpango-1.0 -lcairo -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lffi -lws2_32 -lole32 -lwinmm -lshlwapi  -lintl -lglib-2.0
+	ADDON_PKG_CONFIG_LIBRARIES = gstreamer-1.0 gstreamer-app-1.0 gstreamer-video-1.0
 
 	
 vs:
@@ -109,15 +109,66 @@ android/armeabi:
 android/armeabi-v7a:	
 
 osx:
+
 	ADDON_LDFLAGS = -F/Library/Frameworks -framework GStreamer
-	ADDON_INCLUDES += /Library/Frameworks/GStreamer.framework/Headers
+	ADDON_INCLUDES = /Library/Frameworks/GStreamer.framework/Headers
+
+	# ADDON_INCLUDES += /usr/local/include
+	# ADDON_INCLUDES += /usr/local/include/glib-2.0
+	# ADDON_INCLUDES += /usr/local/lib/glib-2.0/include
+	# ADDON_INCLUDES += /usr/local/include/gstreamer-1.0
+	# ADDON_LIBS += /usr/local/lib/libgstreamer-1.0.0.dylib /usr/local/lib/libgstapp-1.0.0.dylib /usr/local/lib/libgstvideo-1.0.0.dylib /usr/local/lib/libgstbase-1.0.0.dylib /usr/local/lib/libgstnet-1.0.0.dylib /usr/local/lib/libgstaudio-1.0.0.dylib /usr/local/lib/gstreamer-1.0/libgstgio.dylib /usr/local/lib/gstreamer-1.0/libgstpango.dylib /usr/local/lib/libcairo-gobject.dylib /usr/local/lib/libgio-2.0.dylib /usr/local/lib/libgmodule-2.0.dylib /usr/local/lib/libgobject-2.0.dylib /usr/local/lib/libgthread-2.0.dylib /usr/local/lib/libglib-2.0.0.dylib 
+
+	# /usr/local/Cellar/gst-libav/1.16.2/lib/gstreamer-1.0/libgstlibav.so
+
+	# ADDON_LIBS += /usr/local/lib/libgstgl-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstallocators-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstriff-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstpbutils-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstrtsp-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstsdp-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstrtp-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstfft-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgsttag-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstcheck-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/libgstcontroller-1.0.0.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstaudiorate.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstcoretracers.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstopengl.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstplayback.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgsttypefindfunctions.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvolume.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstadder.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstaudioresample.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstencoding.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstopus.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstrawparse.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvideoconvert.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvorbis.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstapp.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstaudiotestsrc.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstoverlaycomposition.dylib 
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstsubparse.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvideorate.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstaudioconvert.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstcompositor.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstlibav.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgsttcp.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvideoscale.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstaudiomixer.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstcoreelements.dylib       
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstogg.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstpbtypes.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgsttheora.dylib
+	# ADDON_LIBS += /usr/local/lib/gstreamer-1.0/libgstvideotestsrc.dylib
+
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstUtils.h
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstUtils.cpp
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoPlayer.h
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoPlayer.cpp
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoGrabber.h
 	ADDON_SOURCES += $(OF_ROOT)/libs/openFrameworks/video/ofGstVideoGrabber.cpp
-    
+
 ios:
 	ADDON_LDFLAGS = -F/Library/Frameworks -framework GStreamer
 	ADDON_INCLUDES = /Library/Frameworks/GStreamer.framework/Headers
